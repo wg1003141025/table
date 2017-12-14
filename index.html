@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        outline: none;
+    }
+    table{
+        width: 50%;
+        height: auto;
+        margin: 50px auto;
+        padding: 40px;
+        background-color: #dfdfdf;
+        border: 1px solid darkgray;
+        text-align: center;
+    }
+    tr{
+        width: 100%;
+        height: auto;
+        font-size: 18px;
+        color: #333;
+        border-bottom: 1px solid red;
+    }
+    tr:nth-of-type(2n){
+        background-color: deepskyblue;
+    }
+    td{
+        padding: 8px;
+    }
+    .tianjia{
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        margin-left: 920px;
+        background-color: deepskyblue;
+        border: 0;
+        font-size: 18px;
+    }
+</style>
+<body>
+<table cellspacing="0">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>班级</th>
+        <th>籍贯</th>
+        <th>电话</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+    <tr>
+        <td contenteditable="true">张三</td>
+        <td>20</td>
+        <td>男</td>
+        <td>1712</td>
+        <td>山西</td>
+        <td>1234567</td>
+        <td class="del">删除</td>
+    </tr>
+</table>
+<button class="tianjia">添加</button>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        let table = document.querySelector("tbody");
+        table.ondblclick = function (e) {
+            let element = e.target;
+            if(element.nodeName == "TD" && element.className != "del"){
+                let valuey = element.innerText;
+                element.innerText = null;
+                let input = document.createElement("input");
+                input.value = valuey;
+                element.appendChild(input);
+                input.onblur = function () {
+                    valuex = input.value;
+                    element.removeChild(input);
+                    element.innerText = valuex;
+                }
+            }else if(element.className == "del"){
+                let delf = element.parentNode;
+                table.removeChild(delf);
+            }
+        }
+        let button = document.querySelector(".tianjia");
+        button.ondblclick = function () {
+            let tr = document.createElement("tr");
+            table.appendChild(tr);
+            tr.innerHTML = `
+        <td contenteditable="true">name</td>
+        <td>age</td>
+        <td>sex</td>
+        <td>class</td>
+        <td>place</td>
+        <td>phone</td>
+        <td class="del">删除</td>`
+        }
+    }
+</script>
